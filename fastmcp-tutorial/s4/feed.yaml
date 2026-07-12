@@ -1,0 +1,12 @@
+name: cfg_ratings_history
+lob: CFG
+query: "SELECT * FROM cfg_ratings"
+schema:
+  cols:
+    - id:
+        description: "Unique Key"
+        meta: ""
+    - issuer_name:
+        description: "Issuer Name"
+    - rating:
+        description: "Rating"

@@ -1,0 +1,1 @@
+colorls: Specified path '/bin/usr' doesn't exist.

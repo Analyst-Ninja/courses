@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: reddit
+    description: "Source for Reddit data"
+    database: reddit_db
+    schema: public
+    tables:
+      - name: r_posts
+        description: "Table for Reddit posts"

@@ -1,0 +1,2 @@
+1 : Today, I have started learning design patterns
+2 : Currently, I am learning SOLID principles

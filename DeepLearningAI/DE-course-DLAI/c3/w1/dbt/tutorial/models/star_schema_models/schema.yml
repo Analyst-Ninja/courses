@@ -1,0 +1,16 @@
+version: 1
+
+models:
+  - name: dim_subreddit
+    description: The sub reddit dimension table
+    columns:
+      - name: sub_reddit_key
+        description: primary key for the table
+        data_tests:
+          - unique
+          - not_null
+      - name: sub_reddit
+        description: sub reddit name
+        data_tests:
+          - unique
+          - not_null

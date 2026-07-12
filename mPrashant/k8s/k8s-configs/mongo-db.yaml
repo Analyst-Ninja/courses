@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # Unique key of the Deployment instance
+  name: mongo-app
+spec:
+  # 3 Pods should exist at all times.
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo-app
+  template:
+    metadata:
+      labels:
+        # Apply this label to pods and default
+        # the Deployment label selector to this value
+        app: mongo-app
+    spec:
+      containers:
+        - name: mongodb
+          image: mongo:8.0.0-rc4
+          volumeMounts: 
+            - mountPath: /data/db
+              name: mongo-vol
+      volumes:
+        - name: mongo-vol
+          persistentVolumeClaim:
+            claimName: host-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  # Unique key of the Service instance
+  name: service-mongodb
+spec:
+  selector:
+    app: mongo-app
+  ports:
+    - name: tcp
+      port: 27017
+      targetPort: 27017

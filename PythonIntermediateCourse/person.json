@@ -1,0 +1,10 @@
+{
+    "name": "Rohit",
+    "age": 27,
+    "hasChildern": false,
+    "interested roles": [
+        "Data Engineer",
+        "Data Scientist",
+        "Programmer"
+    ]
+}

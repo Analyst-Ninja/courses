@@ -1,0 +1,140 @@
+version: '3.8'
+
+services:
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: namenode
+    environment:
+      - CLUSTER_NAME=hdfs-cluster
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:8020
+      - HDFS_SITE_dfs_replication=3  # Set replication factor to 3
+    ports:
+      - "9870:9870"  # NameNode Web UI
+      - "8020:8020"  # HDFS RPC Port
+    volumes:
+      - namenode_data:/hadoop/dfs/namenode  # Persistent volume for NameNode
+    networks:
+      - hadoop-net
+
+  datanode1:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode1
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:8020
+    volumes:
+      - datanode1_data:/hadoop/dfs/datanode  # Persistent volume for DataNode 1
+    networks:
+      - hadoop-net
+
+  datanode2:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode2
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:8020
+    volumes:
+      - datanode2_data:/hadoop/dfs/datanode  # Persistent volume for DataNode 2
+    networks:
+      - hadoop-net
+
+  datanode3:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode3
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:8020
+    volumes:
+      - datanode3_data:/hadoop/dfs/datanode  # Persistent volume for DataNode 3
+    networks:
+      - hadoop-net
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: metastore
+      MYSQL_USER: hive
+      MYSQL_PASSWORD: hive_password
+    ports:
+      - "3306:3306"
+    networks:
+      - hadoop-net
+
+  hive-metastore:
+    image: apache/hive:4.0.1
+    container_name: hive-metastore
+    environment:
+      - HIVE_METASTORE_DB_TYPE=mysql
+      - HIVE_METASTORE_URI=thrift://hive-metastore:9083
+      - HADOOP_CONF_DIR=/opt/hadoop/conf
+      - HIVE_HOME=/opt/hive
+      - HIVE_METASTORE_DB_HOST=mysql
+      - HIVE_METASTORE_DB_PORT=3306
+      - HIVE_METASTORE_DB_USER=hive
+      - HIVE_METASTORE_DB_PASSWORD=hive_password
+    ports:
+      - "9083:9083"
+    networks:
+      - hadoop-net
+    command: ["sh", "-c", "hive --service metastore"]
+
+  spark:
+    image: bitnami/spark:3.3.1  # Use a specific Spark version
+    container_name: spark
+    environment:
+      - SPARK_MODE=master  # Set Spark mode to master
+      - SPARK_MASTER_URL=spark://spark:7077  # URL for Spark master
+      - SPARK_MASTER_HOST=spark  # Name of the Spark master service
+      - HADOOP_CONF_DIR=/opt/hadoop/conf  # Point to Hadoop config directory
+      - HIVE_METASTORE_URIS=thrift://hive-metastore:9083  # Point Spark to Hive Metastore
+
+    ports:
+      - "8080:8080"  # Spark Web UI
+      - "7077:7077"  # Spark master service port
+    networks:
+      - hadoop-net
+
+  spark-worker1:
+    image: bitnami/spark:3.3.1  # Use a specific Spark version
+    container_name: spark-worker1
+    environment:
+      - SPARK_MODE=worker  # Set Spark mode to worker
+      - SPARK_MASTER_URL=spark://spark:7077  # URL for Spark master
+    networks:
+      - hadoop-net
+
+  spark-worker2:
+    image: bitnami/spark:3.3.1  # Use a specific Spark version
+    container_name: spark-worker2
+    environment:
+      - SPARK_MODE=worker  # Set Spark mode to worker
+      - SPARK_MASTER_URL=spark://spark:7077  # URL for Spark master
+    networks:
+      - hadoop-net
+
+  jupyter:
+    image: jupyter/pyspark-notebook:latest  # Jupyter with Spark support
+    container_name: jupyter
+    environment:
+      - JUPYTER_ENABLE_LAB=yes  # Enable JupyterLab
+      - SPARK_MASTER_URL=spark://spark:7077  # URL for Spark master
+      - HIVE_METASTORE_URI=thrift://hive-metastore:9083  # Point to Hive Metastore
+    ports:
+      - "8888:8888"  # Jupyter Notebook
+    networks:
+      - hadoop-net
+    volumes:
+      - ./notebooks:/home/jovyan/work  # Persistent volume for Jupyter notebooks
+
+volumes:
+  namenode_data:
+    driver: local  # Persistent volume for NameNode
+  datanode1_data:
+    driver: local  # Persistent volume for DataNode 1
+  datanode2_data:
+    driver: local  # Persistent volume for DataNode 2
+  datanode3_data:
+    driver: local  # Persistent volume for DataNode 3
+
+networks:
+  hadoop-net:
+    driver: bridge

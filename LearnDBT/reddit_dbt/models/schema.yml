@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: fct_posts
+    description: data modelling of reddit posts
+    columns:
+      - name: post_id
+        description: Primary Key -> post_id
+        tests:
+          - unique
+          - not_null
+      - name: sub_reddit_id
+        description: unique identifier for sub reddit
+        tests:
+          - relationships:
+              to: "ref('dim_sub_reddit')"
+              field: sub_reddit_id
+
+  - name: dim_sub_reddit
+    description: sub reddit dim
+    columns:
+      - name: sub_reddit_id
+        tests:
+          - unique
+          - not_null

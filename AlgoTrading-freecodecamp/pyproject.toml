@@ -1,0 +1,20 @@
+[project]
+name = "algotrading-freecodecamp"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "datetime>=6.0",
+    "jupyter>=1.1.1",
+    "lab>=8.6",
+    "matplotlib>=3.10.7",
+    "numpy==2.2.6",
+    "pandas>=2.3.3",
+    "pandas-datareader>=0.10.0",
+    "pandas-ta>=0.4.71b0",
+    "pyportfolioopt>=1.5.6",
+    "scikit-learn>=1.7.2",
+    "statsmodels>=0.14.5",
+    "yfinance>=0.2.66",
+]

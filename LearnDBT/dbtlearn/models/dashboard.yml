@@ -1,0 +1,16 @@
+version: 2
+
+exposures:
+  - name: Executive Dashboard
+    type: dashboard
+    maturity: low
+    url: https://4efb07a8.us1a.app.preset.io/superset/dashboard/8/?native_filters_key=w8XwrSM5iGyKpGPXHQBniM2I8v4xmI4p4b2fXQ5pDi2_JCGc3TlZS1GdXYFSbJLB
+    description: Executive Dashboard about airbnb listings and hosts
+
+    depends_on:
+      - ref('dim_listings_w_hosts')
+      - ref('mart_fullmoon_reviews')
+
+    owner:
+      name: Rohit Kumar
+      email: rohit@gmail.com

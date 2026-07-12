@@ -1,0 +1,13 @@
+[project]
+name = "learndlfromandrejkarpathy"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "graphviz>=0.21",
+    "jupyter>=1.1.1",
+    "matplotlib>=3.10.8",
+    "pandas>=3.0.1",
+    "torch>=2.10.0",
+]

@@ -1,4 +1,4 @@
-package lc_02;
+package variables;
 import java.util.*;
 
 // Sum of 2 numbers

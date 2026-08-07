@@ -1,0 +1,17 @@
+package lc_02;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+        System.out.print("Hello World with Java!\nfrom\napnacollege\n");
+
+
+
+    }
+
+    public static void loop() {
+        for (int i = 0; i <= 10; i++) {
+            System.out.println(i);
+        }
+    }
+}

@@ -1,0 +1,1 @@
+Notes Link - [Lecture 7](https://docs.google.com/document/d/1XB2d4kTzhvmMrvYMgy53AzM4q9iDAxQq7pZ69a2IJjs/edit?tab=t.0)

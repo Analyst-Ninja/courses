@@ -89,8 +89,13 @@ Notes Link -
 C++ allows Multiple Inheritance of classes directly. Java forbids it, allows many `implements` instead.
 
 3. Abstraction
-   - Show what an object does, hide how it does it
+   - Show what an object does, hide how it does it or the implementation details
    - Done with `abstract` classes and `interface`
+   - An abstract class must be declared with an `abstract` keyword.
+   - It can have abstract and non-abstract methods.
+   - It cannot be instantiated.
+   - It can have constructors and static methods also.
+   - It can have final methods which will force the subclass not to change the body of the method.
 
 4. Encapsulation
    - Bundle data + methods in one class, hide state with `private` fields, expose via getters/setters

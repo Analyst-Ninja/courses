@@ -1,4 +1,5 @@
 package oops;
+import oops.Encapsulation;
 
 // Base class
 class Shape {
@@ -48,7 +49,6 @@ public class Inheritance {
 
         Circle c1 = new Circle();
         c1.area(6);
-
 
     }
 }

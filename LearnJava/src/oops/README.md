@@ -110,3 +110,89 @@ C++ allows Multiple Inheritance of classes directly. Java forbids it, allows man
        - same class + same package + subclass in another package (through inheritance only)
      - public
        - any class anywhere
+
+5. Interfaces
+   - All fields are `public static final` by default (constants, must be initialised)
+   - Method with no body is `public abstract` by default
+   - A class that `implements` an interface must implement all its abstract methods, unless that class is itself `abstract`
+   - Supports multiple inheritance - one class can `implements` many interfaces
+   - An interface can `extends` many interfaces
+   - Cannot be instantiated, has no constructor
+
+   Since Java 8+, an interface can also hold methods with a body:
+   - `default` methods - subclass may override, else uses given body
+   - `static` methods - called on interface itself, not inherited
+   - `private` methods (Java 9+) - helpers shared by default methods
+
+   ```java
+   interface Flyable {
+       int MAX_HEIGHT = 1000;          // public static final
+
+       void fly();                     // public abstract
+
+       default void land() {           // Java 8+
+           System.out.println("landing");
+       }
+   }
+
+   class Bird implements Flyable {
+       @Override
+       public void fly() {             // must be public, cannot reduce visibility
+           System.out.println("flap flap");
+       }
+   }
+   ```
+
+   Interface vs Abstract class
+
+   | | interface | abstract class |
+   |---|---|---|
+   | fields | only `public static final` | any, incl. instance state |
+   | constructor | no | yes |
+   | multiple inheritance | yes | no |
+   | use for | a capability ("can do") | a base type ("is a") |
+
+6. Static Keyword
+
+   `static` binds a member to the **class**, not to an object.
+
+   Memory: a static member is allocated **once**, when the class is loaded - shared by every object.
+   An instance member is allocated **again for every `new`** object created.
+
+   `static` can be applied to:
+   - Variable (class variable) - one shared copy, common value across all objects
+   - Method (class method) - called as `ClassName.method()`, no object needed
+   - Block - runs once at class load, used to initialise static variables
+   - Nested class - inner class that does not need an outer object
+
+   ```java
+   class Counter {
+       static int count;              // one copy for whole class
+       int id;                        // fresh copy per object
+
+       static {                       // static block, runs once at class load
+           count = 0;
+       }
+
+       Counter() {
+           count++;                   // shared, keeps growing
+           id = count;                // per object
+       }
+
+       static void printCount() {     // static method
+           System.out.println(count);
+       }
+
+       static class Helper { }        // static nested class
+   }
+
+   new Counter();
+   new Counter();
+   Counter.printCount();              // 2 - no object needed
+   ```
+
+   Rules
+   - A static method cannot use `this` or `super`
+   - A static method cannot directly access instance variables or instance methods (no object to read them from)
+   - An instance method can freely access static members
+   - Static methods are not overridden, they are hidden (resolved at compile time by reference type)

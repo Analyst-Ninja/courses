@@ -18,10 +18,11 @@ Notes Link -
    - Single Level
 
      ```mermaid
+     %%{init: {'theme':'base','themeVariables':{'background':'#ffffff','primaryColor':'#ffffff','primaryTextColor':'#111111','lineColor':'#555555','textColor':'#111111'}}}%%
      graph BT
        Dog --> Animal
-       classDef parent fill:#4a90d9,stroke:#1b4d75,stroke-width:2px,color:#fff
-       classDef child fill:#57a773,stroke:#255c3a,stroke-width:2px,color:#fff
+       classDef parent fill:#cfe4f7,stroke:#2c6ba0,stroke-width:2px,color:#0d2b45
+       classDef child fill:#d6f0dd,stroke:#2f7d4f,stroke-width:2px,color:#123524
        class Animal parent
        class Dog child
      ```
@@ -29,11 +30,12 @@ Notes Link -
    - Multi Level
 
      ```mermaid
+     %%{init: {'theme':'base','themeVariables':{'background':'#ffffff','primaryColor':'#ffffff','primaryTextColor':'#111111','lineColor':'#555555','textColor':'#111111'}}}%%
      graph BT
        Puppy --> Dog --> Animal
-       classDef parent fill:#4a90d9,stroke:#1b4d75,stroke-width:2px,color:#fff
-       classDef child fill:#57a773,stroke:#255c3a,stroke-width:2px,color:#fff
-       classDef grand fill:#e08e45,stroke:#8a4c15,stroke-width:2px,color:#fff
+       classDef parent fill:#cfe4f7,stroke:#2c6ba0,stroke-width:2px,color:#0d2b45
+       classDef child fill:#d6f0dd,stroke:#2f7d4f,stroke-width:2px,color:#123524
+       classDef grand fill:#fbe3cd,stroke:#b3701f,stroke-width:2px,color:#4a2c08
        class Animal parent
        class Dog child
        class Puppy grand
@@ -42,11 +44,12 @@ Notes Link -
    - Hierarchical
 
      ```mermaid
+     %%{init: {'theme':'base','themeVariables':{'background':'#ffffff','primaryColor':'#ffffff','primaryTextColor':'#111111','lineColor':'#555555','textColor':'#111111'}}}%%
      graph BT
        Dog --> Animal
        Cat --> Animal
-       classDef parent fill:#4a90d9,stroke:#1b4d75,stroke-width:2px,color:#fff
-       classDef child fill:#57a773,stroke:#255c3a,stroke-width:2px,color:#fff
+       classDef parent fill:#cfe4f7,stroke:#2c6ba0,stroke-width:2px,color:#0d2b45
+       classDef child fill:#d6f0dd,stroke:#2f7d4f,stroke-width:2px,color:#123524
        class Animal parent
        class Dog,Cat child
      ```
@@ -54,15 +57,16 @@ Notes Link -
    - Hybrid - mix of above, needs an interface in Java
 
      ```mermaid
+     %%{init: {'theme':'base','themeVariables':{'background':'#ffffff','primaryColor':'#ffffff','primaryTextColor':'#111111','lineColor':'#555555','textColor':'#111111'}}}%%
      graph BT
        Dog --> Animal
        Cat --> Animal
        Puppy --> Dog
        Puppy -.-> Pet
-       classDef parent fill:#4a90d9,stroke:#1b4d75,stroke-width:2px,color:#fff
-       classDef child fill:#57a773,stroke:#255c3a,stroke-width:2px,color:#fff
-       classDef grand fill:#e08e45,stroke:#8a4c15,stroke-width:2px,color:#fff
-       classDef iface fill:#9b6bc4,stroke:#4f2d73,stroke-width:2px,color:#fff
+       classDef parent fill:#cfe4f7,stroke:#2c6ba0,stroke-width:2px,color:#0d2b45
+       classDef child fill:#d6f0dd,stroke:#2f7d4f,stroke-width:2px,color:#123524
+       classDef grand fill:#fbe3cd,stroke:#b3701f,stroke-width:2px,color:#4a2c08
+       classDef iface fill:#e6d9f5,stroke:#7248a3,stroke-width:2px,color:#2e1a47
        class Animal parent
        class Dog,Cat child
        class Puppy grand
@@ -72,11 +76,12 @@ Notes Link -
    - Multiple - NOT allowed for classes in Java (diamond problem), do it with interfaces
 
      ```mermaid
+     %%{init: {'theme':'base','themeVariables':{'background':'#ffffff','primaryColor':'#ffffff','primaryTextColor':'#111111','lineColor':'#555555','textColor':'#111111'}}}%%
      graph BT
        Duck -.-> Swimmable
        Duck -.-> Flyable
-       classDef child fill:#57a773,stroke:#255c3a,stroke-width:2px,color:#fff
-       classDef iface fill:#9b6bc4,stroke:#4f2d73,stroke-width:2px,color:#fff
+       classDef child fill:#d6f0dd,stroke:#2f7d4f,stroke-width:2px,color:#123524
+       classDef iface fill:#e6d9f5,stroke:#7248a3,stroke-width:2px,color:#2e1a47
        class Swimmable,Flyable iface
        class Duck child
      ```

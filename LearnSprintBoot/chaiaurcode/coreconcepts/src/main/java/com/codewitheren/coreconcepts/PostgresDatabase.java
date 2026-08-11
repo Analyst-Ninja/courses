@@ -1,9 +1,9 @@
 package com.codewitheren.coreconcepts;
 
-import org.springframework.context.annotation.Profile;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
-@Profile("prod")
+@ConditionalOnProperty(name = "db.type", havingValue = "postgres")
 @Component
 public class PostgresDatabase implements Database {
 

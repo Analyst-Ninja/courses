@@ -3,12 +3,12 @@ package com.codewitheren.coreconcepts;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-@Profile("dev ")
+@Profile("prod")
 @Component
-public class MySQLDatabase implements Database {
+public class PostgresDatabase implements Database {
 
     @Override
     public void save(String user) {
-        System.out.println("MySQL is saving the user: " + user);
+        System.out.println("Saving user in Postgres: " + user);
     }
 }

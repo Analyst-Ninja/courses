@@ -10,6 +10,9 @@ public class Main {
 
         OrderService orderService = context.getBean(OrderService.class);
         orderService.order();
+
+        User user = context.getBean(User.class);
+        System.out.println(user.getName());
     }
 }
 

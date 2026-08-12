@@ -14,6 +14,7 @@ public class OrderService {
 
     public void placeOrder() {
         System.out.println("Order Placed");
+        // Actual Business Logic
         notification.sendNotification();
     }
 }

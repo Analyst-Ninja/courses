@@ -9,8 +9,10 @@ import com.codewitheren.notifications.PopUpNotificationService;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        NotificationService notification = new FakeEmailService();
-        OrderService orderService = new OrderService(notification);
+        NotificationService notification = new EmailService();
+        // OrderService orderService = new OrderService(notification);
+        OrderService orderService = new OrderService();
+        orderService.setNotification(notification);
         orderService.placeOrder();
     }
 }

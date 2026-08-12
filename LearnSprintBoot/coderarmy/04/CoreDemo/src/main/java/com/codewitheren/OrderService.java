@@ -12,9 +12,16 @@ public class OrderService {
         this.notification = notification;
     }
 
+    // Overloading to check the usage of setter
+    public OrderService() {}
+
     public void placeOrder() {
         System.out.println("Order Placed");
         // Actual Business Logic
         notification.sendNotification();
+    }
+
+    public void setNotification(NotificationService notification) {
+        this.notification = notification;
     }
 }

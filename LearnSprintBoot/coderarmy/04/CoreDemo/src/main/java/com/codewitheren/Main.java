@@ -16,3 +16,5 @@ public class Main {
         orderService.placeOrder();
     }
 }
+
+// IOC - Inversion of Control

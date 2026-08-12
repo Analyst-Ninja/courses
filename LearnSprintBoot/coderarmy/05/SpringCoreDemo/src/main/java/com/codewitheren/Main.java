@@ -10,9 +10,6 @@ public class Main {
 
         OrderService orderService = context.getBean(OrderService.class);
         orderService.order();
-
-        PaymentService paymentService = context.getBean(PaymentService.class);
-        paymentService.pay();
     }
 }
 

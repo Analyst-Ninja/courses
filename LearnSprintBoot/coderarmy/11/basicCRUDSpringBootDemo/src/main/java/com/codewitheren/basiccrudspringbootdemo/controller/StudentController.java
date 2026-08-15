@@ -31,8 +31,8 @@ public class StudentController {
     }
 
     // Get Student
-    @GetMapping("/get/{id}")
-    public ResponseEntity<Optional<Student>> getStudent(@PathVariable Long id) {
+    @GetMapping("/get")
+    public ResponseEntity<Optional<Student>> getStudent(@RequestParam Long id) {
         Optional<Student> studentResp = studentService.getStudent(id);
 
         if (studentResp == null) {
@@ -56,9 +56,9 @@ public class StudentController {
     }
 
     // Update Student record
-    @PutMapping("/update/{id}")
+    @PutMapping("/update/")
     public ResponseEntity<Student> updateStudent(
-            @PathVariable Long id,
+            @RequestParam Long id,
             @RequestBody Student studentReq
     ) {
 
@@ -78,5 +78,13 @@ public class StudentController {
         if (!isDeleted) return ResponseEntity.notFound().build();
 
         return ResponseEntity.ok("Record deleted");
+    }
+
+    @PatchMapping("/deleteSoftly/{id}")
+    public ResponseEntity<String> deleteStudentSoftly(@PathVariable Long id) {
+        Boolean isDeleted = studentService.deleteByIdSoftly(id);
+
+        if (!isDeleted) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok("Record deleted with id: " + id);
     }
 }

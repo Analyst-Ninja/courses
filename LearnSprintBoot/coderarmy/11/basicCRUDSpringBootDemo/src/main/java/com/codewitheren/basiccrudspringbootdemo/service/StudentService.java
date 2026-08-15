@@ -20,14 +20,14 @@ public class StudentService {
         // business logic
         // store to DB ❌
         // delegate the data to Repository
-
+        studentReq.setDeleted(false);
         Student studentResp = studentRepository.save(studentReq);
 
         return studentResp;
     }
 
     public Optional<Student> getStudent(Long id) {
-        Optional<Student> studentResp = studentRepository.findById(id);
+        Optional<Student> studentResp = studentRepository.findByIdAndDeletedIsFalse(id);
 
         if (studentResp.isPresent()) {
             return studentResp;
@@ -38,7 +38,7 @@ public class StudentService {
     }
 
     public List<Student> getAllStudents() {
-        List<Student> allStudents = studentRepository.findAll();
+        List<Student> allStudents = studentRepository.findAllByDeletedIsFalse();
 
         if (allStudents.isEmpty()) return null;
 
@@ -46,7 +46,7 @@ public class StudentService {
     }
 
     public Student updateStudent(Long id, Student studentReq) {
-        Optional<Student> existingStudent = studentRepository.findById(id);
+        Optional<Student> existingStudent = studentRepository.findByIdAndDeletedIsFalse(id);
 
         if (existingStudent.isEmpty()) {
             return null;
@@ -58,6 +58,7 @@ public class StudentService {
         studentToUpdate.setAge(studentReq.getAge());
         studentToUpdate.setRollNo(studentReq.getRollNo());
         studentToUpdate.setSubject(studentReq.getSubject());
+        studentToUpdate.setDeleted(false);
 
         return studentRepository.save(studentToUpdate);
     }
@@ -74,5 +75,21 @@ public class StudentService {
 
         return true;
 
+    }
+
+    // soft delete
+    public Boolean deleteByIdSoftly(Long id) {
+
+        Optional<Student> existingStudent = studentRepository.findByIdAndDeletedIsFalse(id);
+
+        if (existingStudent.isEmpty()) return false;
+
+        // delete student (softly)
+        Student studentToSoftDelete = existingStudent.get();
+        studentToSoftDelete.setDeleted(true);
+
+        studentRepository.save(studentToSoftDelete);
+
+        return true;
     }
 }

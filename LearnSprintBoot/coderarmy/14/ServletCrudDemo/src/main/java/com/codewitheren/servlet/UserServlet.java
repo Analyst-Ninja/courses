@@ -2,6 +2,8 @@ package com.codewitheren.servlet;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -10,26 +12,22 @@ import java.net.http.HttpResponse;
 public class UserServlet extends HttpServlet {
 
     @Override
-    public void doGet(HttpRequest request, HttpResponse response) {
-        String name = "a";
+    public void doGet(HttpServletRequest request, HttpServletResponse response) {
 
     }
 
     @Override
-    public void doPost(HttpRequest request, HttpResponse response) {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) {
 
     }
 
     @Override
-    public void doPut(HttpRequest request, HttpResponse response) {
+    public void doPut(HttpServletRequest request, HttpServletResponse response) {
 
     }
 
     @Override
-    public void doGet(HttpRequest request, HttpResponse response) {
+    public void doDelete(HttpServletRequest request, HttpServletResponse response) {
 
     }
-
-
-
 }

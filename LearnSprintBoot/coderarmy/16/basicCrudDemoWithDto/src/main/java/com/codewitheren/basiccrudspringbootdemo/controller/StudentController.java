@@ -1,7 +1,13 @@
 package com.codewitheren.basiccrudspringbootdemo.controller;
 
+import com.codewitheren.basiccrudspringbootdemo.dto.CreateRequestDto;
+import com.codewitheren.basiccrudspringbootdemo.dto.CreateResponseDto;
+import com.codewitheren.basiccrudspringbootdemo.dto.UpdateRequestDto;
+import com.codewitheren.basiccrudspringbootdemo.dto.UpdateResponseDto;
 import com.codewitheren.basiccrudspringbootdemo.entity.Student;
 import com.codewitheren.basiccrudspringbootdemo.service.StudentService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +27,11 @@ public class StudentController {
 
     // Create a student
     @PostMapping("/create")
-    public ResponseEntity<Student> createStudent(@RequestBody Student student) {
+    public ResponseEntity<CreateResponseDto> createStudent(
+           @Valid @RequestBody CreateRequestDto createRequestDto
+    ) {
 
-        Student createdStudent = studentService.createStudent(student);
+        CreateResponseDto createdStudent = studentService.createStudent(createRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -32,8 +40,8 @@ public class StudentController {
 
     // Get Student
     @GetMapping("/get")
-    public ResponseEntity<Optional<Student>> getStudent(@RequestParam Long id) {
-        Optional<Student> studentResp = studentService.getStudent(id);
+    public ResponseEntity<CreateResponseDto> getStudent(@RequestParam Long id) {
+        CreateResponseDto studentResp = studentService.getStudent(id);
 
         if (studentResp == null) {
             return ResponseEntity
@@ -47,8 +55,8 @@ public class StudentController {
 
     // Get all students
     @GetMapping("/getAll")
-    public ResponseEntity<List<Student>> getAllStudents() {
-        List<Student> studentList = studentService.getAllStudents();
+    public ResponseEntity<List<CreateResponseDto>> getAllStudents() {
+        List<CreateResponseDto> studentList = studentService.getAllStudents();
         if (studentList.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
@@ -57,12 +65,12 @@ public class StudentController {
 
     // Update Student record
     @PutMapping("/update")
-    public ResponseEntity<Student> updateStudent(
+    public ResponseEntity<UpdateResponseDto> updateStudent(
             @RequestParam Long id,
-            @RequestBody Student studentReq
+            @RequestBody UpdateRequestDto updateRequestDto
     ) {
 
-        Student student = studentService.updateStudent(id, studentReq);
+        UpdateResponseDto student = studentService.updateStudent(id, updateRequestDto);
 
         if (student ==  null) {
             return ResponseEntity.notFound().build();

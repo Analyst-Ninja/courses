@@ -1,0 +1,21 @@
+[project]
+name = "learn-flink"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Rohit Kumar", email = "r.kumar01@hotmail.com" }
+]
+requires-python = ">=3.8"
+dependencies = [
+    "apache-flink>=2.0.2",
+    "faker>=35.2.2",
+    "jupyterlab>=4.3.8",
+]
+
+[project.scripts]
+learn-flink = "learn_flink:main"
+
+[build-system]
+requires = ["uv_build>=0.12.13,<0.13.0"]
+build-backend = "uv_build"

@@ -1,0 +1,20 @@
+[project]
+name = "developer-confluent-io"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [{ name = "Rohit Kumar", email = "r.kumar01@hotmail.com" }]
+requires-python = ">=3.11"
+dependencies = [
+    "apache-flink>=2.3.0",
+]
+
+[project.scripts]
+developer-confluent-io = "developer_confluent_io:main"
+
+[build-system]
+requires = ["uv_build>=0.12.13,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv.extra-build-dependencies]
+apache-beam = ["setuptools<81"]

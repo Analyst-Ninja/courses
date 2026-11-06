@@ -1,0 +1,22 @@
+[project]
+name = "mlflow-tutorial"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Rohit Kumar", email = "r.kumar01@hotmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "langchain[openai]>=1.4.0",
+    "mistralai>=2.10.0",
+    "mlflow>=3.16.0",
+    "openai>=3.13.0",
+]
+
+[project.scripts]
+mlflow-tutorial = "mlflow_tutorial:main"
+
+[build-system]
+requires = ["uv_build>=0.12.13,<0.13.0"]
+build-backend = "uv_build"

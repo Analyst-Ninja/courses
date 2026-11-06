@@ -6,7 +6,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.time.LocalDateTime;
-import java.util.function.Predicate;
 
 @Entity
 public class Student {

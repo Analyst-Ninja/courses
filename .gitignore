@@ -220,4 +220,16 @@ __marimo__/
 # IntelliJ
 .idea/
 .DS_Store
+softwareDesignMastery/.DS_Store
+
+# node_modules
+node_modules/
+mPrashant/k8s/express-demo/node_modules/*
+mPrashant/k8s/express-demo/node_modules/
+mPrashant/k8s/express-demo/node_modules
+
+# postman
+.postman/
+
+
 

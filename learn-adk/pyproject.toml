@@ -6,9 +6,11 @@ readme = "README.md"
 authors = [{ name = "Rohit Kumar", email = "r.kumar01@hotmail.com" }]
 requires-python = ">=3.13"
 dependencies = [
+    "ddgs>=9.16.1",
     "google-adk>=2.13.0",
     "google-generativeai>=0.8.6",
     "litellm>=1.108.2",
+    "mcp>=2.3.0",
     "psutil>=7.2.2",
     "python-dotenv>=1.2.4",
     "yfinance>=1.8.0",

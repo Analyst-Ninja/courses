@@ -26,7 +26,7 @@ SESSION_ID = str(uuid.uuid4())
 
 
 async def main():
-    stateful_session = await session_service_stateful.create_session(
+    await session_service_stateful.create_session(
         app_name=APP_NAME,
         user_id=USER_ID,
         session_id=SESSION_ID,
@@ -61,8 +61,9 @@ async def main():
 
     # Log Final Session State
     print("=== Final Session State ===")
-    for key, value in session.state.items():
-        print(f"{key}: {value}")
+    if session is not None:
+        for key, value in session.state.items():
+            print(f"{key}: {value}")
 
 
 if __name__ == "__main__":

@@ -234,5 +234,8 @@ mPrashant/k8s/express-demo/node_modules
 # jars
 learn-flink/src/learn_flink/flink-sql-connector-kinesis-1.16.1.jar
 
+# .adk
+.adk/
+
 
 

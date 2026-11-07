@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from ddgs import DDGS
 from google.adk import Agent
 from google.adk.models.lite_llm import LiteLlm
@@ -33,11 +35,22 @@ def duckduckgo_search(query: str) -> dict:
             ],
         }
 
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         return {
             "status": "error",
             "message": str(e),
         }
+
+
+def get_current_datetime():
+    """
+    Get the current date and time.
+
+    Returns:
+        Current date and time as a string.
+    """
+
+    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 
 root_agent = Agent(
@@ -50,6 +63,8 @@ root_agent = Agent(
     instruction="""
     You are a helpful assistant that can use the following tools:
     - duckduckgo_search
+    - get_current_datetime
     """,
-    tools=[duckduckgo_search],
+    tools=[duckduckgo_search, get_current_datetime],
+    # tools=[builtin_tool_1, non_builtin_tool_1]  <--- Doesn't work with non-builtin tools yet
 )

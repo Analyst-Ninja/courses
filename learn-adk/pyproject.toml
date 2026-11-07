@@ -7,7 +7,7 @@ authors = [{ name = "Rohit Kumar", email = "r.kumar01@hotmail.com" }]
 requires-python = ">=3.13"
 dependencies = [
     "ddgs>=9.16.1",
-    "google-adk>=2.13.0",
+    "google-adk[db]>=2.13.0",
     "google-generativeai>=0.8.6",
     "litellm>=1.108.2",
     "mcp>=2.3.0",

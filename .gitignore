@@ -236,6 +236,7 @@ learn-flink/src/learn_flink/flink-sql-connector-kinesis-1.16.1.jar
 
 # .adk
 .adk/
+learn-adk/src/learn_adk/simple_agent/.adk/*
 
 
 

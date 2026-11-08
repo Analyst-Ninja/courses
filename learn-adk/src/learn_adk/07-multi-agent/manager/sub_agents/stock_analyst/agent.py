@@ -35,7 +35,7 @@ def get_stock_price(ticker: str) -> dict:
     except Exception as e:
         return {
             "status": "error",
-            "error_message": f"Error fetching stock data: {str(e)}",
+            "error_message": f"Error fetching stock data: {e!s}",
         }
 
 

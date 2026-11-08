@@ -1,10 +1,9 @@
 import asyncio
 
+from customer_service_agent.agent import customer_service_agent
 from dotenv import load_dotenv
 from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService
-
-from customer_service_agent.agent import customer_service_agent
 from utils import add_user_query_to_history, call_agent_async
 
 load_dotenv()
